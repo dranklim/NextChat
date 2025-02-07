@@ -628,8 +628,38 @@ const siliconflowModels = [
   "Pro/deepseek-ai/DeepSeek-V3",
 ];
 
+const groqModels = [
+  "deepseek-r1-distill-llama-70b",
+  "llama-3.3-70b-versatile",
+  "llama-3.3-70b-specdec",
+  "llama-3.2-3b-preview",
+  "llama-3.1-8b-instant",
+  "llama-3.2-1b-preview",
+  "llama3-8b-8192",
+  "llama3-70b-8192",
+  "llama-guard-3-8b",
+  "mixtral-8x7b-32768",
+  "gemma2-9b-it",
+  "whisper-large-v3",
+  "whisper-large-v3-turbo",
+  "distil-whisper-large-v3-en",
+  "llama-3.2-11b-vision-preview",
+  "llama-3.2-90b-vision-preview",
+];
+
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
+  ...groqModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "groq",
+      providerName: "Groq",
+      providerType: "groq",
+      sorted: 1,
+    },
+  })),
   ...openaiModels.map((name) => ({
     name,
     available: true,
@@ -638,7 +668,7 @@ export const DEFAULT_MODELS = [
       id: "openai",
       providerName: "OpenAI",
       providerType: "openai",
-      sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
+      sorted: 2, // 这里是固定的，确保顺序与之前内置的版本一致
     },
   })),
   ...openaiModels.map((name) => ({
@@ -649,7 +679,7 @@ export const DEFAULT_MODELS = [
       id: "azure",
       providerName: "Azure",
       providerType: "azure",
-      sorted: 2,
+      sorted: 3,
     },
   })),
   ...googleModels.map((name) => ({
@@ -660,7 +690,7 @@ export const DEFAULT_MODELS = [
       id: "google",
       providerName: "Google",
       providerType: "google",
-      sorted: 3,
+      sorted: 4,
     },
   })),
   ...anthropicModels.map((name) => ({
@@ -671,7 +701,7 @@ export const DEFAULT_MODELS = [
       id: "anthropic",
       providerName: "Anthropic",
       providerType: "anthropic",
-      sorted: 4,
+      sorted: 5,
     },
   })),
   ...baiduModels.map((name) => ({
@@ -682,7 +712,7 @@ export const DEFAULT_MODELS = [
       id: "baidu",
       providerName: "Baidu",
       providerType: "baidu",
-      sorted: 5,
+      sorted: 6,
     },
   })),
   ...bytedanceModels.map((name) => ({
@@ -693,7 +723,7 @@ export const DEFAULT_MODELS = [
       id: "bytedance",
       providerName: "ByteDance",
       providerType: "bytedance",
-      sorted: 6,
+      sorted: 7,
     },
   })),
   ...alibabaModes.map((name) => ({
@@ -704,7 +734,7 @@ export const DEFAULT_MODELS = [
       id: "alibaba",
       providerName: "Alibaba",
       providerType: "alibaba",
-      sorted: 7,
+      sorted: 8,
     },
   })),
   ...tencentModels.map((name) => ({
@@ -715,7 +745,7 @@ export const DEFAULT_MODELS = [
       id: "tencent",
       providerName: "Tencent",
       providerType: "tencent",
-      sorted: 8,
+      sorted: 9,
     },
   })),
   ...moonshotModes.map((name) => ({
@@ -726,7 +756,7 @@ export const DEFAULT_MODELS = [
       id: "moonshot",
       providerName: "Moonshot",
       providerType: "moonshot",
-      sorted: 9,
+      sorted: 10,
     },
   })),
   ...iflytekModels.map((name) => ({
@@ -737,7 +767,7 @@ export const DEFAULT_MODELS = [
       id: "iflytek",
       providerName: "Iflytek",
       providerType: "iflytek",
-      sorted: 10,
+      sorted: 11,
     },
   })),
   ...xAIModes.map((name) => ({
@@ -748,7 +778,7 @@ export const DEFAULT_MODELS = [
       id: "xai",
       providerName: "XAI",
       providerType: "xai",
-      sorted: 11,
+      sorted: 12,
     },
   })),
   ...chatglmModels.map((name) => ({
@@ -759,7 +789,7 @@ export const DEFAULT_MODELS = [
       id: "chatglm",
       providerName: "ChatGLM",
       providerType: "chatglm",
-      sorted: 12,
+      sorted: 13,
     },
   })),
   ...deepseekModels.map((name) => ({
@@ -770,7 +800,7 @@ export const DEFAULT_MODELS = [
       id: "deepseek",
       providerName: "DeepSeek",
       providerType: "deepseek",
-      sorted: 13,
+      sorted: 14,
     },
   })),
   ...siliconflowModels.map((name) => ({
@@ -781,7 +811,7 @@ export const DEFAULT_MODELS = [
       id: "siliconflow",
       providerName: "SiliconFlow",
       providerType: "siliconflow",
-      sorted: 14,
+      sorted: 15,
     },
   })),
 ] as const;
