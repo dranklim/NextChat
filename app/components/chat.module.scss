@@ -460,6 +460,12 @@
   background:rgba(0, 0, 0, 0.03) !important;
 }
 
+.chat-message-inlineP {
+  margin:10px 0;
+  padding:5px;
+  border:2px dashed #d5cfcf;
+}
+
 .chat-message-audio {
   display: flex;
   align-items: center;

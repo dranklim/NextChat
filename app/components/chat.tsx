@@ -1969,26 +1969,30 @@ function _Chat() {
                             </div>
                           )}
                           <div className={styles["chat-message-item"]}>
-                            <div className={styles["chat-message-shinyText"]}>
-                              <Markdown
-                                key={message.streaming ? "loading" : "done"}
-                                content={getMessageReasoningContent(message)}
-                                loading={
-                                  (message.preview || message.streaming) &&
-                                  message.content.length === 0 &&
-                                  !isUser
-                                }
-                                //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
-                                onDoubleClickCapture={() => {
-                                  if (!isMobileScreen) return;
-                                  setUserInput(getMessageReasoningContent(message));
-                                }}
-                                fontSize={fontSize}
-                                fontFamily={fontFamily}
-                                parentRef={scrollRef}
-                                defaultShow={i >= messages.length - 6}
-                              />
-                            </div>
+                            {getMessageReasoningContent(message).length != 0 && (
+                              <div className={styles["chat-message-shinyText"]}>
+                                <p className={styles["chat-message-inlineP"]}>
+                                <Markdown
+                                  key={message.streaming ? "loading" : "done"}
+                                  content={getMessageReasoningContent(message)}
+                                  loading={
+                                    (message.preview || message.streaming) &&
+                                    message.content.length === 0 &&
+                                    !isUser
+                                  }
+                                  //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
+                                  onDoubleClickCapture={() => {
+                                    if (!isMobileScreen) return;
+                                    setUserInput(getMessageReasoningContent(message));
+                                  }}
+                                  fontSize={fontSize}
+                                  fontFamily={fontFamily}
+                                  parentRef={scrollRef}
+                                  defaultShow={i >= messages.length - 6}
+                                />
+                                </p>
+                              </div>
+                            )}
                             <Markdown
                               key={message.streaming ? "loading" : "done"}
                               content={getMessageTextContentWithoutThinking(message)}
