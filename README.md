@@ -40,7 +40,7 @@ English / [简体中文](./README_CN.md)
 
 </div>
 
-## 🥳 Cheer for DeepSeek, China's AI star!
+## 🥳 Cheer for DeepSeek, China's AI star!!
  > Purpose-Built UI for DeepSeek Reasoner Model
  
 <img src="https://github.com/user-attachments/assets/f3952210-3af1-4dc0-9b81-40eaa4847d9a"/>
