@@ -6,6 +6,7 @@ export type MessageRole = (typeof ROLES)[number];
 export interface RequestMessage {
   role: MessageRole;
   content: string;
+  reasoning_format?: string;
 }
 
 export type DalleSize = "1024x1024" | "1792x1024" | "1024x1792";
