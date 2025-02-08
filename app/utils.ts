@@ -241,6 +241,29 @@ export function getMessageTextContent(message: RequestMessage) {
   return "";
 }
 
+export function getMessageReasoningContent(message: RequestMessage) {
+  let content = "";
+  if (typeof message.content === "string") {
+    content = message.content;
+  } else {
+    for (const c of message.content) {
+      if (c.type === "text") {
+        content = c.text ?? "";
+      }
+    }
+  }
+
+  let result = "";
+  for (const line of content.split(/[\r\n]+/)){
+    if (line.startsWith("</think>")) {
+      break;
+    }
+    result += line.startsWith("<think>") ? "" : line + "\n";
+  }
+
+  return result;
+}
+
 export function getMessageTextContentWithoutThinking(message: RequestMessage) {
   let content = "";
 
@@ -256,11 +279,15 @@ export function getMessageTextContentWithoutThinking(message: RequestMessage) {
   }
 
   // Filter out thinking lines (starting with "> ")
-  return content
-    .split("\n")
-    .filter((line) => !line.startsWith("> ") && line.trim() !== "")
-    .join("\n")
-    .trim();
+  let result = "";
+  for (const line of content.split(/[\r\n]+/)){
+    result += line + "\n";
+    if (line.startsWith("</think>")) {
+      result = "";
+    }
+  }
+  
+  return result;
 }
 
 export function getMessageImages(message: RequestMessage): string[] {
@@ -290,6 +317,10 @@ export function isVisionModel(model: string) {
 
 export function isDalle3(model: string) {
   return "dall-e-3" === model;
+}
+
+export function isDeepSeekReasoning(model: string) {
+  return "deepseek-r1-distill-llama-70b" === model;
 }
 
 export function getModelSizes(model: string): ModelSize[] {

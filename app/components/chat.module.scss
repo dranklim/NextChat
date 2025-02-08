@@ -449,6 +449,17 @@
   transition: all ease 0.3s;
 }
 
+.chat-message-shinyText {
+  width:-webkit-fit-content;
+  width:-moz-fit-content;
+  width:fit-content;
+  padding-block:4px;
+  padding-inline:8px;
+  border-radius:6px;
+  color:#949090;
+  background:rgba(0, 0, 0, 0.03) !important;
+}
+
 .chat-message-audio {
   display: flex;
   align-items: center;

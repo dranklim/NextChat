@@ -67,6 +67,8 @@ import {
   copyToClipboard,
   getMessageImages,
   getMessageTextContent,
+  getMessageReasoningContent,
+  getMessageTextContentWithoutThinking,
   isDalle3,
   isVisionModel,
   safeLocalStorage,
@@ -1967,9 +1969,29 @@ function _Chat() {
                             </div>
                           )}
                           <div className={styles["chat-message-item"]}>
+                            <div className={styles["chat-message-shinyText"]}>
+                              <Markdown
+                                key={message.streaming ? "loading" : "done"}
+                                content={getMessageReasoningContent(message)}
+                                loading={
+                                  (message.preview || message.streaming) &&
+                                  message.content.length === 0 &&
+                                  !isUser
+                                }
+                                //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
+                                onDoubleClickCapture={() => {
+                                  if (!isMobileScreen) return;
+                                  setUserInput(getMessageReasoningContent(message));
+                                }}
+                                fontSize={fontSize}
+                                fontFamily={fontFamily}
+                                parentRef={scrollRef}
+                                defaultShow={i >= messages.length - 6}
+                              />
+                            </div>
                             <Markdown
                               key={message.streaming ? "loading" : "done"}
-                              content={getMessageTextContent(message)}
+                              content={getMessageTextContentWithoutThinking(message)}
                               loading={
                                 (message.preview || message.streaming) &&
                                 message.content.length === 0 &&
@@ -1978,7 +2000,7 @@ function _Chat() {
                               //   onContextMenu={(e) => onRightClick(e, message)} // hard to use
                               onDoubleClickCapture={() => {
                                 if (!isMobileScreen) return;
-                                setUserInput(getMessageTextContent(message));
+                                setUserInput(getMessageTextContentWithoutThinking(message));
                               }}
                               fontSize={fontSize}
                               fontFamily={fontFamily}
