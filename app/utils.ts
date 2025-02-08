@@ -241,29 +241,6 @@ export function getMessageTextContent(message: RequestMessage) {
   return "";
 }
 
-export function isReasoningContent(message: RequestMessage) {
-  let content = "";
-  let foundReasoning = false;
-  if (typeof message.content === "string") {
-    content = message.content;
-  } else {
-    for (const c of message.content) {
-      if (c.type === "text") {
-        content = c.text ?? "";
-      }
-    }
-  }
-
-  let result = "";
-  for (const line of content.split(/[\r\n]+/)){
-    if (line.startsWith("<think>")) {
-      foundReasoning = true;
-      break;
-    }
-  }
-  return foundReasoning;
-}
-
 export function getMessageReasoningContent(message: RequestMessage) {
   let content = "";
   let foundReasoning = false;
@@ -280,8 +257,10 @@ export function getMessageReasoningContent(message: RequestMessage) {
   let result = "";
   for (const line of content.split(/[\r\n]+/)){
     if (line.startsWith("</think>")) {
-      foundReasoning = true;
       break;
+    }
+    if (line.startsWith("<think>")) {
+      foundReasoning = true;
     }
     result += line.startsWith("<think>") ? "" : line + "\n";
   }
@@ -291,8 +270,32 @@ export function getMessageReasoningContent(message: RequestMessage) {
   return result;
 }
 
+export function isReasoningContent(message: RequestMessage) {
+  let content = "";
+  let foundReasoning = false;
+  if (typeof message.content === "string") {
+    content = message.content;
+  } else {
+    for (const c of message.content) {
+      if (c.type === "text") {
+        content = c.text ?? "";
+      }
+    }
+  }
+
+  let result = "";
+  for (const line of content.split(/[\r\n]+/)){
+    if (line.startsWith("</think>")) {
+      foundReasoning = true;
+      break;
+    }
+  }
+  return foundReasoning;
+}
+
 export function getMessageTextContentWithoutThinking(message: RequestMessage) {
   let content = "";
+  let foundReasoning = false;
 
   if (typeof message.content === "string") {
     content = message.content;
@@ -308,10 +311,18 @@ export function getMessageTextContentWithoutThinking(message: RequestMessage) {
   // Filter out thinking lines (starting with "> ")
   let result = "";
   for (const line of content.split(/[\r\n]+/)){
-    result += line + "\n";
+    if (line.startsWith("<think>")) {
+      foundReasoning = true;
+    }
     if (line.startsWith("</think>")) {
       result = "";
+      foundReasoning = false;
+      continue;
     }
+    if (foundReasoning) {
+      continue;
+    }
+    result += line + "\n";
   }
   
   return result;
