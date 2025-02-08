@@ -243,6 +243,7 @@ export function getMessageTextContent(message: RequestMessage) {
 
 export function getMessageReasoningContent(message: RequestMessage) {
   let content = "";
+  let foundReasoning = false;
   if (typeof message.content === "string") {
     content = message.content;
   } else {
@@ -256,11 +257,14 @@ export function getMessageReasoningContent(message: RequestMessage) {
   let result = "";
   for (const line of content.split(/[\r\n]+/)){
     if (line.startsWith("</think>")) {
+      foundReasoning = true;
       break;
     }
     result += line.startsWith("<think>") ? "" : line + "\n";
   }
-
+  if (!foundReasoning) {
+    result = "";
+  }
   return result;
 }
 
