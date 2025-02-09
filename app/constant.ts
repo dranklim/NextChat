@@ -1,5 +1,5 @@
-export const OWNER = "Dranklim";
-export const REPO = "NextChat";
+export const OWNER = "ChatGPTNextWeb";
+export const REPO = "ChatGPT-Next-Web";
 export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
 export const PLUGINS_REPO_URL = `https://github.com/${OWNER}/NextChat-Awesome-Plugins`;
 export const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues`;
