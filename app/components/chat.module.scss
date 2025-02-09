@@ -453,11 +453,14 @@
   width:-webkit-fit-content;
   width:-moz-fit-content;
   width:fit-content;
+  padding: 10px;
   padding-block:4px;
   padding-inline:8px;
   border-radius:6px;
   color:#949090;
   background:rgba(0, 0, 0, 0.03) !important;
+  border-left: 5px solid #ddd;
+  
 }
 
 .chat-message-inlineP {
