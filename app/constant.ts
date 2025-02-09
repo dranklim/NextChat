@@ -129,6 +129,7 @@ export enum ServiceProvider {
   ChatGLM = "ChatGLM",
   DeepSeek = "DeepSeek",
   SiliconFlow = "SiliconFlow",
+  Groq = "Groq",
 }
 
 // Google API safety settings, see https://ai.google.dev/gemini-api/docs/safety-settings
