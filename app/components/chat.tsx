@@ -1971,7 +1971,7 @@ function _Chat() {
                           <div className={styles["chat-message-item"]}>
                             {getMessageReasoningContent(message).length != 0 && (
                               <div className={styles["chat-message-shinyText"]}>
-                                <p className={styles["chat-message-inlineP"]}>
+                                <p}
                                 <Markdown
                                   key={message.streaming ? "loading" : "done"}
                                   content={getMessageReasoningContent(message)}
