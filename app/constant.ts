@@ -586,6 +586,7 @@ const iflytekModels = [
   "pro-128k",
   "generalv3.5",
   "4.0Ultra",
+  "xdeepseekr1",
 ];
 
 const deepseekModels = ["deepseek-chat", "deepseek-coder", "deepseek-reasoner"];
