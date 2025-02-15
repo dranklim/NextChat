@@ -631,6 +631,7 @@ const siliconflowModels = [
 ];
 
 const groqModels = [
+  "deepseek-r1-distill-qwen-32b",
   "deepseek-r1-distill-llama-70b",
   "llama-3.3-70b-versatile",
   "llama-3.3-70b-specdec",
